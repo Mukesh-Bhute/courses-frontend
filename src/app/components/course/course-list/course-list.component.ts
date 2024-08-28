@@ -1,0 +1,69 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CourseService } from 'src/app/services/course.service';
+import { CourseCreateComponent } from '../course-create/course-create.component';
+import { CourseDetailsComponent } from '../course-details/course-details.component';
+
+@Component({
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.css']
+})
+export class CourseListComponent implements OnInit {
+
+courses: any[] = [];
+
+  constructor(
+    private courseService: CourseService,
+    private dialog: MatDialog
+  ) { }
+
+  ngOnInit(): void {
+    this.courseService.getCourses().subscribe(data => {
+      this.courses = data;
+    });
+  }
+
+  getAllCourses(){
+    this.courseService.getCourses().subscribe(data => {
+      this.courses = data;
+    });
+  }
+  
+  deleteCourse(id: number){
+    this.courseService.deleteCourse(id).subscribe(() => {
+      this.courses = this.courses.filter(course => course.id !== id);
+    });
+  }
+
+  openCreateDialog(): void {
+    const dialogRef = this.dialog.open(CourseCreateComponent, {
+      width: '60vw',
+      height: '60vh',
+      data: {
+        
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllCourses();
+      }
+    });
+  }
+
+  openDetailsDialog(course: any): void {
+    const dialogRef = this.dialog.open(CourseDetailsComponent, {
+      width: '60vw',
+      height: '60vh',
+      data: course
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllCourses();
+      }
+    });
+  }
+
+}

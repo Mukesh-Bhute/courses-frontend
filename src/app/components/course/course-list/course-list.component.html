@@ -1,0 +1,13 @@
+<h1>Courses</h1><button mat-button (click)="openCreateDialog()">Create New Course</button>
+<ul>
+  <li *ngFor="let course of courses">
+    {{ course.title }} ({{ course.course_code }})
+    <button mat-button (click)="openDetailsDialog(course)">View Details</button>
+    <button (click)="deleteCourse(course.id)">Delete</button>
+
+  </li>
+</ul>
+
+
+
+

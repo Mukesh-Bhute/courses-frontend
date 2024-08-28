@@ -1,0 +1,26 @@
+<h1>Course Instances</h1>
+
+<div>
+  <label for="year">Year:</label>
+
+    <!-- <select id="year" [(ngModel)]="selectedYear" name="year">
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+    </select>
+
+
+  <label for="semester">Semester:</label>
+
+    <input matInput type="number" id="semester" [(ngModel)]="selectedSemester" name="semester">
+
+
+  <button raised-button color="primary" (click)="onSearch()">Search</button> -->
+  <button raised-button color="accent" (click)="openCreateDialog()">Create New Instance</button>
+</div>
+
+<ul>
+  <li *ngFor="let instance of instances">
+    {{ instance.course.title }} ({{ instance.year }} Semester {{ instance.semester }})
+    <button (click)="openDetailsDialog(instance.year, instance.semester, instance.course.id)">Details</button>
+    <button (click)="deleteInstance(instance.year, instance.semester, instance.course.id)">Delete</button>
+  </li>
+</ul>
