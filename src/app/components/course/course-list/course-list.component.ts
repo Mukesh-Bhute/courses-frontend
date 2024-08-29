@@ -11,7 +11,8 @@ import { CourseDetailsComponent } from '../course-details/course-details.compone
 })
 export class CourseListComponent implements OnInit {
 
-courses: any[] = [];
+  courses: any[] = [];
+  displayedColumns: string[] = ['title', 'course_code'];
 
   constructor(
     private courseService: CourseService,
@@ -19,9 +20,7 @@ courses: any[] = [];
   ) { }
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe(data => {
-      this.courses = data;
-    });
+    this.getAllCourses();
   }
 
   getAllCourses(){

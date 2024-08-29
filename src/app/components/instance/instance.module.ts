@@ -7,6 +7,7 @@ import { InstanceDetailsComponent } from './instance-details/instance-details.co
 import { InstanceCreateComponent } from './instance-create/instance-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     InstanceRoutingModule,
     ReactiveFormsModule,
     MatDialogModule,
+    SharedModule
   ]
 })
 export class InstanceModule { }

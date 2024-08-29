@@ -15,6 +15,7 @@ export class InstanceListComponent implements OnInit {
   years: number[] = [];
   semesters: number[] = [];
   searchForm: FormGroup;
+  displayedColumns: string[] = ['Course_Title', 'Year_Sem',   'Code'];
 
   constructor(
     private instanceService: InstanceService,
@@ -33,7 +34,16 @@ export class InstanceListComponent implements OnInit {
 
   getAllInstances(): void {
     this.instanceService.getAllInstances().subscribe(data => {
-      this.instances = data;
+      this.instances = data.map((inst: any) => ({
+        id: inst.id,
+        Course_Title: inst.course.title,
+        Code: inst.course.course_code,
+        Year_Sem: inst.year+'-'+inst.semester,
+        year:inst.year,
+        semester:inst.semester,
+        cid: inst.course.id
+      }));
+      console.log("datatatat :", this.instances)
       this.years = Array.from(new Set(data.map((instance: any) => instance.year)));
       this.semesters = Array.from(new Set(data.map((instance: any) => instance.semester)));
     });
@@ -43,7 +53,14 @@ export class InstanceListComponent implements OnInit {
     const year = this.searchForm.get('year')?.value;
     const semester = this.searchForm.get('semester')?.value;
     this.instanceService.getInstances(year, semester).subscribe(data => {
-      this.instances = data;
+      this.instances = data.map((inst: any) => ({
+        id: inst.id,
+        course_title: inst.course.title,
+        course_code: inst.course.course_code,
+        course_description: inst.course.description,
+        Year_Sem: inst.year+'-'+inst.semester,
+      }));
+      console.log("datatatat :", this.instances)
     });
   }
 
@@ -51,9 +68,7 @@ export class InstanceListComponent implements OnInit {
     const dialogRef = this.dialog.open(InstanceCreateComponent, {
       width: '60vw',
       height: '60vh',
-      data: {
-        
-      },
+      data: { },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -63,24 +78,28 @@ export class InstanceListComponent implements OnInit {
     });
   }
 
-  openDetailsDialog(year: number, semester: number, courseId: number): void {
+  openDetailsDialog(row: any): void {
     const dialogRef = this.dialog.open(InstanceDetailsComponent, {
       width: '60vw',
       height: '60vh',
-      data: { year, semester, courseId }
+      data: {
+        year: row.year,
+        semester: row.semester,
+        courseId: row.cid
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        
+        this.getAllInstances();
       }
     });
   }
 
-  deleteInstance(year: number, semester: number, courseId: number): void {
-    this.instanceService.deleteInstance(year, semester, courseId).subscribe(() => {
+  deleteInstance(row: any): void {
+    this.instanceService.deleteInstance(row.year, row.semester, row.cid).subscribe(() => {
       this.instances = this.instances.filter(instance =>
-        instance.year !== year || instance.semester !== semester || instance.course.id !== courseId
+        instance.year !== row.year || instance.semester !== row.semester || instance.cid !== row.cid
       );
     });
   }

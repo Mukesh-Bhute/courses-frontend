@@ -1,12 +1,12 @@
-<h1>Courses</h1><button mat-button (click)="openCreateDialog()">Create New Course</button>
-<ul>
-  <li *ngFor="let course of courses">
-    {{ course.title }} ({{ course.course_code }})
-    <button mat-button (click)="openDetailsDialog(course.id)">View Details</button>
-    <button (click)="deleteCourse(course.id)">Delete</button>
+<h1>Courses</h1>
+<button mat-button (click)="openCreateDialog()">Create New Course</button>
 
-  </li>
-</ul>
+
+  <app-dynamic-table
+    [displayedColumns]="displayedColumns" [dataSource]="courses"
+    (viewDetails)="openDetailsDialog($event.id)" (deleteItem)="deleteCourse($event.id)">
+  </app-dynamic-table>
+
 
 
 

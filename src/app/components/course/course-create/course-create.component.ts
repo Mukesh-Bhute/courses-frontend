@@ -23,6 +23,9 @@ export class CourseCreateComponent {
   createCourse(): void {
     this.courseService.createCourse(this.course).subscribe(() => {
       this.dialogRef.close(true);
+    },
+    (error) => {
+      alert('something went wrong!');
     });
   }
 
