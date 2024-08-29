@@ -1,19 +1,19 @@
 <h1>Course Instances</h1>
 
 <div>
-  <label for="year">Year:</label>
-
-    <!-- <select id="year" [(ngModel)]="selectedYear" name="year">
+  <form [formGroup]="searchForm" >
+    <label for="year">Year:</label>
+    <select id="year" formControlName="year">
       <option *ngFor="let year of years" [value]="year">{{ year }}</option>
     </select>
-
-
-  <label for="semester">Semester:</label>
-
-    <input matInput type="number" id="semester" [(ngModel)]="selectedSemester" name="semester">
-
-
-  <button raised-button color="primary" (click)="onSearch()">Search</button> -->
+  
+    <label for="semester">Semester:</label>
+    <select id="semester" formControlName="semester">
+      <option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</option>
+    </select>
+  
+    <button type="submit" (click)="search()">Search</button>
+  </form>
   <button raised-button color="accent" (click)="openCreateDialog()">Create New Instance</button>
 </div>
 

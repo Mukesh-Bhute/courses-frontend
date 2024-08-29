@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Course Details</h1>
-<div mat-dialog-content>
-  <p><strong>Title:</strong> {{ data.title }}</p>
-  <p><strong>Course Code:</strong> {{ data.course_code }}</p>
-  <p><strong>Description:</strong> {{ data.description }}</p>
+<h1>Course Details</h1>
+<div >
+  <p><strong>Title:</strong> {{ this.course.title }}</p>
+  <p><strong>Course Code:</strong> {{ this.course.course_code }}</p>
+  <p><strong>Description:</strong> {{ this.course.description }}</p>
 </div>
-<div mat-dialog-actions>
+<div >
   <button mat-button (click)="closeDialog()">Close</button>
 </div>

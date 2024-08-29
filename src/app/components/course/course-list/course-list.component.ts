@@ -29,7 +29,7 @@ courses: any[] = [];
       this.courses = data;
     });
   }
-  
+
   deleteCourse(id: number){
     this.courseService.deleteCourse(id).subscribe(() => {
       this.courses = this.courses.filter(course => course.id !== id);
@@ -40,9 +40,7 @@ courses: any[] = [];
     const dialogRef = this.dialog.open(CourseCreateComponent, {
       width: '60vw',
       height: '60vh',
-      data: {
-        
-      },
+      data: {},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -52,11 +50,11 @@ courses: any[] = [];
     });
   }
 
-  openDetailsDialog(course: any): void {
+  openDetailsDialog(id: any): void {
     const dialogRef = this.dialog.open(CourseDetailsComponent, {
       width: '60vw',
       height: '60vh',
-      data: course
+      data: id
     });
 
     dialogRef.afterClosed().subscribe(result => {

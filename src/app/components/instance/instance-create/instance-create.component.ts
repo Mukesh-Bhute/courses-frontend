@@ -52,7 +52,6 @@ export class InstanceCreateComponent {
         this.instanceExists = false;
       }
       if (this.instanceExists) {     
-        this.dialogRef.close(true);
         alert('Instance already exists!');
       } else {
         if (this.instanceForm.valid) {

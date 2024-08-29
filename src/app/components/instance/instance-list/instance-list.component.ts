@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InstanceService } from 'src/app/services/instance.service';
 import { InstanceCreateComponent } from '../instance-create/instance-create.component';
 import { InstanceDetailsComponent } from '../instance-details/instance-details.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-instance-list',
@@ -11,11 +12,20 @@ import { InstanceDetailsComponent } from '../instance-details/instance-details.c
 })
 export class InstanceListComponent implements OnInit {
   instances: any[] = [];
+  years: number[] = [];
+  semesters: number[] = [];
+  searchForm: FormGroup;
 
   constructor(
     private instanceService: InstanceService,
+    private fb: FormBuilder,
     private dialog: MatDialog
-  ) { }
+  ) { 
+    this.searchForm = this.fb.group({
+      year: [''],
+      semester: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.getAllInstances();
@@ -24,10 +34,14 @@ export class InstanceListComponent implements OnInit {
   getAllInstances(): void {
     this.instanceService.getAllInstances().subscribe(data => {
       this.instances = data;
+      this.years = Array.from(new Set(data.map((instance: any) => instance.year)));
+      this.semesters = Array.from(new Set(data.map((instance: any) => instance.semester)));
     });
   }
 
-  getInstances(year: number, semester: number): void {
+  search(): void {
+    const year = this.searchForm.get('year')?.value;
+    const semester = this.searchForm.get('semester')?.value;
     this.instanceService.getInstances(year, semester).subscribe(data => {
       this.instances = data;
     });
