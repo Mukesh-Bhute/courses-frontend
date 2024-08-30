@@ -1,5 +1,25 @@
-<p>instance-details works!</p>
-<h1>{{ instance?.course.title }} - {{ instance?.year }} Semester {{ instance?.semester }}</h1>
-<p>Course Code: {{ instance?.course.course_code }}</p>
-<p>Description: {{ instance?.course.description }}</p>
-<button mat-button (click)="closeDialog()">Close</button>
+<div class="container">
+    <h1 class="text-center mb-4">
+      {{ instance?.course.title }} - {{ instance?.year }} Semester {{ instance?.semester }}
+    </h1>
+    <div class="row">
+      <div class="col-12 mb-3">
+        <div class="detail-item">
+          <span class="detail-label">Course Code:</span>
+          <span class="detail-value">{{ instance?.course.course_code }}</span>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-item">
+          <span class="detail-label">Description:</span>
+          <span class="detail-value">{{ instance?.course.description }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end mt-4">
+      <div class="col-auto">
+        <button mat-button class="btn btn-primary" (click)="closeDialog()">Close</button>
+      </div>
+    </div>
+  </div>
+  

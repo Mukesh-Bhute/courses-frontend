@@ -1,9 +1,19 @@
-<h1>Course Details</h1>
-<div >
-  <p><strong>Title:</strong> {{ this.course.title }}</p>
-  <p><strong>Course Code:</strong> {{ this.course.course_code }}</p>
-  <p><strong>Description:</strong> {{ this.course.description }}</p>
-</div>
-<div >
-  <button mat-button (click)="closeDialog()">Close</button>
+<h1 class=" mt-4 mb-4">Course Details</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <p><b>Title:</b> {{ this.course.title }}</p>
+    </div>
+    <div class="col-12 mb-3">
+      <p><b>Course Code:</b> {{ this.course.course_code }}</p>
+    </div>
+    <div class="col-12 mb-3">
+      <p><b>Description:</b> {{ this.course.description }}</p>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-auto">
+      <button mat-button class="btn btn-primary" (click)="closeDialog()">Close</button>
+    </div>
+  </div>
 </div>

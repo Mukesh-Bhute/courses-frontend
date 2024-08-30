@@ -84,8 +84,8 @@ export class InstanceListComponent implements OnInit {
 
   openDetailsDialog(row: any): void {
     const dialogRef = this.dialog.open(InstanceDetailsComponent, {
-      width: '60vw',
-      height: '60vh',
+      width: '40vw',
+      height: '40vh',
       data: {
         year: row.year,
         semester: row.semester,

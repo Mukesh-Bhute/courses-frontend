@@ -1,20 +1,22 @@
 <div class="container mt-4">
-  <h1 >Courses</h1>
+  <h1>Courses</h1>
 
-  <div class="d-flex justify-content-end mb-3">
-    <button mat-button (click)="openCreateDialog()" class="btn btn-primary  me-2">
+  <div class="d-flex justify-content-end flex-column flex-md-row align-items-stretch align-items-md-center mb-3">
+    <button mat-button (click)="openCreateDialog()" class="btn btn-primary mb-2 mb-md-0 me-md-2">
       List Courses
     </button>
 
     <button mat-button (click)="navigateToInstance()" class="btn btn-secondary">
-       Instances
+      Instances
     </button>
   </div>
 
   <div class="table-responsive">
     <app-dynamic-table
-      [displayedColumns]="displayedColumns" [dataSource]="courses"
-      (viewDetails)="openDetailsDialog($event.id)" (deleteItem)="deleteCourse($event.id)">
+      [displayedColumns]="displayedColumns" 
+      [dataSource]="courses"
+      (viewDetails)="openDetailsDialog($event.id)" 
+      (deleteItem)="deleteCourse($event.id)">
     </app-dynamic-table>
   </div>
 </div>

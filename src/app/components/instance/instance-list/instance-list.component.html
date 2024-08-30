@@ -1,26 +1,28 @@
 <div class="container mt-4">
-  <h1 >Course Instances</h1>
+  <h1>Course Instances</h1>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <form [formGroup]="searchForm" class="d-flex align-items-center">
-      <div class="me-3">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+    <form [formGroup]="searchForm" class="d-flex flex-column flex-sm-row align-items-stretch align-items-md-center">
+      <div class="me-0 me-sm-3 mb-2 mb-sm-0">
         <select id="year" formControlName="year" class="form-select" placeholder="Year">
           <option value="" disabled selected>Year</option>
           <option *ngFor="let year of years" [value]="year">{{ year }}</option>
         </select>
       </div>
   
-      <div class="me-3">
+      <div class="me-0 me-sm-3 mb-2 mb-sm-0">
         <select id="semester" formControlName="semester" class="form-select" placeholder="Semester">
           <option value="" disabled selected>Semester</option>
           <option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</option>
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary me-2" (click)="search()">Search</button>
-      <button type="button" class="btn btn-secondary me-2" (click)="getAllInstances()">All</button>
+      <div class="d-flex flex-column flex-sm-row">
+        <button type="submit" class="btn btn-primary mb-2 mb-sm-0 me-0 me-sm-2" (click)="search()">Search</button>
+        <button type="button" class="btn btn-secondary" (click)="getAllInstances()">All</button>
+      </div>
     </form>
-    <div>
+    <div class="mt-3 mt-md-0 d-flex">
       <button (click)="openCreateDialog()" class="btn btn-primary me-2">List Instance</button>
       <button (click)="navigateToCourses()" class="btn btn-secondary">Courses</button>
     </div>
