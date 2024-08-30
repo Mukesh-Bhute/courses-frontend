@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { InstanceService } from 'src/app/services/instance.service';
@@ -9,7 +9,7 @@ import { CourseService } from 'src/app/services/course.service';
   templateUrl: './instance-create.component.html',
   styleUrls: ['./instance-create.component.css']
 })
-export class InstanceCreateComponent {
+export class InstanceCreateComponent implements OnInit {
   instanceForm: FormGroup;
   courses: any[] = [];
   instanceExists: boolean = true;
@@ -29,6 +29,9 @@ export class InstanceCreateComponent {
     this.courseService.getCourses().subscribe(data => {
       this.courses = data;
     });
+  }
+
+  ngOnInit(): void {  
   }
 
   checkInstanceExists() {

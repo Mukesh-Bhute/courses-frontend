@@ -1,7 +1,6 @@
 <h1>Courses</h1>
 <button mat-button (click)="openCreateDialog()">Create New Course</button>
 
-
   <app-dynamic-table
     [displayedColumns]="displayedColumns" [dataSource]="courses"
     (viewDetails)="openDetailsDialog($event.id)" (deleteItem)="deleteCourse($event.id)">

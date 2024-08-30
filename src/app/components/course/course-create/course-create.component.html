@@ -1,24 +1,23 @@
 <h1 mat-dialog-title>Create New Course</h1>
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="courseForm">
     <mat-form-field>
-      <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="course.title" name="title" required>
+      <label>Title</label>
+      <input  formControlName="title" required>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Course Code</mat-label>
-      <input matInput [(ngModel)]="course.course_code" name="course_code" required>
+      <label>Course Code</label>
+      <input  formControlName="course_code" required>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput [(ngModel)]="course.description" name="description"></textarea>
+      <label>Description</label>
+      <textarea  formControlName="description"></textarea>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Cancel</button>
-  <button mat-button (click)="createCourse()">Create</button>
+  <button (click)="closeDialog()">Cancel</button>
+  <button [disabled]="courseForm.invalid" (click)="createCourse()">Create</button>
 </div>
-
