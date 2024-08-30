@@ -1,26 +1,37 @@
-<h1>Course Instances</h1>
+<div class="container mt-4">
+  <h1 >Course Instances</h1>
 
-<div>
-  <form [formGroup]="searchForm" >
-    <label for="year">Year:</label>
-    <select id="year" formControlName="year">
-      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-    </select>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <form [formGroup]="searchForm" class="d-flex align-items-center">
+      <div class="me-3">
+        <select id="year" formControlName="year" class="form-select" placeholder="Year">
+          <option value="" disabled selected>Year</option>
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+      </div>
   
-    <label for="semester">Semester:</label>
-    <select id="semester" formControlName="semester">
-      <option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</option>
-    </select>
-  
-    <button type="submit" (click)="search()">Search</button>
-  </form>
-  <button raised-button color="accent" (click)="openCreateDialog()">Create New Instance</button>
+      <div class="me-3">
+        <select id="semester" formControlName="semester" class="form-select" placeholder="Semester">
+          <option value="" disabled selected>Semester</option>
+          <option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary me-2" (click)="search()">Search</button>
+      <button type="button" class="btn btn-secondary me-2" (click)="getAllInstances()">All</button>
+    </form>
+    <div>
+      <button (click)="openCreateDialog()" class="btn btn-primary me-2">List Instance</button>
+      <button (click)="navigateToCourses()" class="btn btn-secondary">Courses</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <app-dynamic-table
+      [displayedColumns]="displayedColumns"
+      [dataSource]="instances"
+      (viewDetails)="openDetailsDialog($event)"
+      (deleteItem)="deleteInstance($event)">
+    </app-dynamic-table>
+  </div>
 </div>
-
-
-<app-dynamic-table
-  [displayedColumns]="displayedColumns"
-  [dataSource]="instances"
-  (viewDetails)="openDetailsDialog($event)"
-  (deleteItem)="deleteInstance($event)">
-</app-dynamic-table>

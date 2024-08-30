@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CourseService } from 'src/app/services/course.service';
 import { CourseCreateComponent } from '../course-create/course-create.component';
 import { CourseDetailsComponent } from '../course-details/course-details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -15,6 +16,7 @@ export class CourseListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'course_code'];
 
   constructor(
+    private router: Router,
     private courseService: CourseService,
     private dialog: MatDialog
   ) { }
@@ -62,5 +64,10 @@ export class CourseListComponent implements OnInit {
       }
     });
   }
+
+  navigateToInstance(): void {
+    this.router.navigate(['/instances']);
+  }
+  
 
 }

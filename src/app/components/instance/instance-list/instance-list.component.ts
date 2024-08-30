@@ -4,6 +4,7 @@ import { InstanceService } from 'src/app/services/instance.service';
 import { InstanceCreateComponent } from '../instance-create/instance-create.component';
 import { InstanceDetailsComponent } from '../instance-details/instance-details.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-instance-list',
@@ -18,6 +19,7 @@ export class InstanceListComponent implements OnInit {
   displayedColumns: string[] = ['Course_Title', 'Year_Sem',   'Code'];
 
   constructor(
+    private router: Router,
     private instanceService: InstanceService,
     private fb: FormBuilder,
     private dialog: MatDialog
@@ -55,10 +57,12 @@ export class InstanceListComponent implements OnInit {
     this.instanceService.getInstances(year, semester).subscribe(data => {
       this.instances = data.map((inst: any) => ({
         id: inst.id,
-        course_title: inst.course.title,
-        course_code: inst.course.course_code,
-        course_description: inst.course.description,
+        Course_Title: inst.course.title,
+        Code: inst.course.course_code,
         Year_Sem: inst.year+'-'+inst.semester,
+        year:inst.year,
+        semester:inst.semester,
+        cid: inst.course.id
       }));
       console.log("datatatat :", this.instances)
     });
@@ -102,5 +106,9 @@ export class InstanceListComponent implements OnInit {
         instance.year !== row.year || instance.semester !== row.semester || instance.cid !== row.cid
       );
     });
+  }
+
+  navigateToCourses(): void {
+    this.router.navigate(['/courses']);
   }
 }
