@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InstanceService } from 'src/app/services/instance.service';
 import { InstanceCreateComponent } from '../instance-create/instance-create.component';
 import { InstanceDetailsComponent } from '../instance-details/instance-details.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,8 +26,8 @@ export class InstanceListComponent implements OnInit {
     private dialog: MatDialog
   ) { 
     this.searchForm = this.fb.group({
-      year: [''],
-      semester: ['']
+      year: ['', Validators.required],
+      semester: ['', Validators.required]
     });
   }
 
@@ -108,6 +108,7 @@ export class InstanceListComponent implements OnInit {
       this.instances = this.instances.filter(instance =>
         instance.year !== row.year || instance.semester !== row.semester || instance.cid !== row.cid
       );
+      this.getAllInstances();
     });
   }
 

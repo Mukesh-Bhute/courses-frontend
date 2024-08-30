@@ -22,7 +22,7 @@
       </div>
 
       <div class="d-flex flex-column flex-sm-row">
-        <button type="submit" class="btn btn-primary mb-2 mb-sm-0 me-0 me-sm-2" (click)="search()">Search</button>
+        <button type="submit" class="btn btn-primary mb-2 mb-sm-0 me-0 me-sm-2" [disabled]="searchForm.invalid" (click)="search()">Search</button>
         <button type="button" class="btn btn-secondary" (click)="getAllInstances()">All</button>
       </div>
     </form>
