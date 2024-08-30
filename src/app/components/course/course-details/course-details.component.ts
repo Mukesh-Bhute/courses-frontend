@@ -10,6 +10,7 @@ import { CourseService } from 'src/app/services/course.service';
 export class CourseDetailsComponent implements OnInit {
 
   course: any;
+  loader: boolean = true;
 
   constructor(
     private courseService: CourseService,
@@ -20,7 +21,7 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.getCourse(this.data).subscribe(data => {
       this.course = data;
-      console.log("data :", this.course)
+      this.loader= false;
     });
   }
 

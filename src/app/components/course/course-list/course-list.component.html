@@ -1,4 +1,9 @@
-<div class="container mt-4">
+
+<div class="container h-100 d-flex justify-content-center align-items-center" *ngIf="loader">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="!loader && courses" class="container mt-4">
   <h1>Courses</h1>
 
   <div class="d-flex justify-content-end flex-column flex-md-row align-items-stretch align-items-md-center mb-3">

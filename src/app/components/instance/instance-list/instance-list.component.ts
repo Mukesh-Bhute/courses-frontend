@@ -17,6 +17,7 @@ export class InstanceListComponent implements OnInit {
   semesters: number[] = [];
   searchForm: FormGroup;
   displayedColumns: string[] = ['Course_Title', 'Year_Sem',   'Code'];
+  loader: boolean = true;
 
   constructor(
     private router: Router,
@@ -35,6 +36,7 @@ export class InstanceListComponent implements OnInit {
   }
 
   getAllInstances(): void {
+    this.loader=true;
     this.instanceService.getAllInstances().subscribe(data => {
       this.instances = data.map((inst: any) => ({
         id: inst.id,
@@ -45,13 +47,14 @@ export class InstanceListComponent implements OnInit {
         semester:inst.semester,
         cid: inst.course.id
       }));
-      console.log("datatatat :", this.instances)
       this.years = Array.from(new Set(data.map((instance: any) => instance.year)));
       this.semesters = Array.from(new Set(data.map((instance: any) => instance.semester)));
+      this.loader=false;
     });
   }
 
   search(): void {
+    this.loader=true;
     const year = this.searchForm.get('year')?.value;
     const semester = this.searchForm.get('semester')?.value;
     this.instanceService.getInstances(year, semester).subscribe(data => {
@@ -64,7 +67,7 @@ export class InstanceListComponent implements OnInit {
         semester:inst.semester,
         cid: inst.course.id
       }));
-      console.log("datatatat :", this.instances)
+      this.loader=false;
     });
   }
 

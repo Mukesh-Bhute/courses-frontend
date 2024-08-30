@@ -9,6 +9,7 @@ import { InstanceService } from 'src/app/services/instance.service';
 })
 export class InstanceDetailsComponent implements OnInit {
   instance: any;
+  loader: boolean = true;
 
   constructor(
     private dialogRef: MatDialogRef<InstanceDetailsComponent>,
@@ -20,6 +21,7 @@ export class InstanceDetailsComponent implements OnInit {
     const { year, semester, courseId } = this.data;
     this.instanceService.getInstance(year, semester, courseId).subscribe(data => {
       this.instance = data;
+      this.loader= false;
     });
   }
   closeDialog(): void {

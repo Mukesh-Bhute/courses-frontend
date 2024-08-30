@@ -1,3 +1,8 @@
+<div *ngIf="loader">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="!loader && course">
 <h1 class=" mt-4 mb-4">Course Details</h1>
 <div class="container">
   <div class="row">
@@ -16,4 +21,5 @@
       <button mat-button class="btn btn-primary" (click)="closeDialog()">Close</button>
     </div>
   </div>
+</div>
 </div>

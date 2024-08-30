@@ -14,6 +14,7 @@ export class CourseListComponent implements OnInit {
 
   courses: any[] = [];
   displayedColumns: string[] = ['title', 'course_code'];
+  loader: boolean = true;
 
   constructor(
     private router: Router,
@@ -26,8 +27,10 @@ export class CourseListComponent implements OnInit {
   }
 
   getAllCourses(){
+    this.loader=true;
     this.courseService.getCourses().subscribe(data => {
       this.courses = data;
+      this.loader=false;
     });
   }
 
