@@ -30,10 +30,11 @@ export class CourseCreateComponent implements OnInit {
     if (this.courseForm.valid) {
       this.courseService.createCourse(this.courseForm.value).subscribe(
         () => {
+          alert('Course created suceessfully!');
           this.dialogRef.close(true);
         },
         (error) => {
-          alert('something went wrong!');
+          alert('something went wrong!, Course code should be unique');
         }
       );
     }
