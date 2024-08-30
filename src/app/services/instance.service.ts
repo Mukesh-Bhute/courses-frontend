@@ -6,11 +6,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class InstanceService {
+  apiUrl:string;
 
-  private apiUrl = `${environment.apiBaseUrl}/instances`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiBaseUrl+'/instances'
+   }
 
   getAllInstances(): Observable<any> {
     return this.http.get(`${this.apiUrl}/all`);

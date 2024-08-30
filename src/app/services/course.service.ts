@@ -7,12 +7,16 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CourseService {
+  apiUrl:string;
+  
 
-  private apiUrl = `${environment.apiBaseUrl}/courses`;
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.apiUrl = environment.apiBaseUrl+'/courses' 
+        
+   }
 
   getCourses(): Observable<any> {
+    console.log("api>>>",this.apiUrl)
     return this.http.get(this.apiUrl+'-list');
   }
 
