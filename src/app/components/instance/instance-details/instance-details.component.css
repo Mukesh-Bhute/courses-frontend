@@ -8,6 +8,12 @@
     font-weight: 600;
     color: #333;
   }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
   
   .detail-item {
     display: flex;

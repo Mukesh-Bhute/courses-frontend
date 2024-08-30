@@ -1,0 +1,17 @@
+
+.form-group {
+    margin-bottom: 1rem;
+  }
+  
+  textarea.form-control {
+    resize: vertical; 
+  }
+  
+
+  @media (max-width: 576px) {
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+    }
+  }
+  

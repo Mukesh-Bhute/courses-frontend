@@ -39,8 +39,8 @@ export class CourseListComponent implements OnInit {
 
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CourseCreateComponent, {
-      width: '60vw',
-      height: '60vh',
+      width: '50vw',
+      height: '50vh',
       data: {},
     });
 

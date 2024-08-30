@@ -1,23 +1,24 @@
 <h1 mat-dialog-title>Create New Course</h1>
 <div mat-dialog-content>
   <form [formGroup]="courseForm">
-    <mat-form-field>
-      <label>Title</label>
-      <input  formControlName="title" required>
-    </mat-form-field>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="title" placeholder="Title" required />
+    </div>
 
-    <mat-form-field>
-      <label>Course Code</label>
-      <input  formControlName="course_code" required>
-    </mat-form-field>
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="course_code" placeholder="Course Code" required />
+    </div>
 
-    <mat-form-field>
-      <label>Description</label>
-      <textarea  formControlName="description"></textarea>
-    </mat-form-field>
+    <div class="form-group">
+      <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+    </div>
   </form>
 </div>
-<div mat-dialog-actions>
-  <button (click)="closeDialog()">Cancel</button>
-  <button [disabled]="courseForm.invalid" (click)="createCourse()">Create</button>
+<div class="d-flex justify-content-end">
+  <button type="button" class="btn btn-secondary me-2" (click)="closeDialog()">
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="courseForm.invalid" (click)="createCourse()">
+    Add course
+  </button>
 </div>

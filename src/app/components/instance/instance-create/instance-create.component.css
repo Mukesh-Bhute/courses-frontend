@@ -1,0 +1,22 @@
+
+.form-group {
+    margin-bottom: 1rem;
+  }
+  
+  select.form-control {
+    height: auto; 
+  }
+  
+
+  select.form-control option:first-child {
+    color: #6c757d; 
+  }
+  
+ 
+  @media (max-width: 576px) {
+    .form-group input,
+    .form-group select {
+      width: 100%;
+    }
+  }
+  

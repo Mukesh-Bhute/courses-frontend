@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InstanceService } from 'src/app/services/instance.service';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -21,9 +21,9 @@ export class InstanceCreateComponent implements OnInit {
     private dialogRef: MatDialogRef<InstanceCreateComponent>
   ) {
     this.instanceForm = this.fb.group({
-      year: [''],
-      semester: [''],
-      course: ['']
+      year: ['', Validators.required],
+      semester: ['', Validators.required],
+      course: ['', Validators.required]
     });
 
     this.courseService.getCourses().subscribe(data => {
